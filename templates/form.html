@@ -1,0 +1,97 @@
+<!-- templates/form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Raffle Entry Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e6f4f1, #dceefb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2a8f90;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #2a8f90;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #2a8f90;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1e6e6e;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Raffle Entry Form</h2>
+    <form method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+      <label for="sdo">SDO:</label>
+      <input type="text" id="sdo" name="sdo" placeholder="School Division Office" required>
+
+      <label for="position">Position:</label>
+      <input type="text" id="position" name="position" placeholder="Your position" required>
+
+      <label for="contact">Contact Number:</label>
+      <input type="tel" id="contact" name="contact" placeholder="09XXXXXXXXX" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

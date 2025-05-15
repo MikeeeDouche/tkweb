@@ -1,0 +1,79 @@
+<!-- templates/flash.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flash GIF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      background: linear-gradient(135deg, #f7f5f3 0%, #f8f6f5 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .image-container {
+      position: relative;
+      display: inline-block;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .image-container img {
+      width: 100vw;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .image-container img:hover {
+      transform: scale(1.01);
+    }
+
+    .btn-enter {
+      position: absolute;
+      top: 73%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #2d86ec;
+      color: white;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      z-index: 1;
+    }
+
+    .btn-enter:hover {
+      background-color: #ffd560;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img src="{{ url_for('static', filename='intro2.gif') }}" alt="Flashing GIF">
+    <button class="btn-enter" onclick="window.location.href='/form'">Next</button>
+  </div>
+</body>
+</html>

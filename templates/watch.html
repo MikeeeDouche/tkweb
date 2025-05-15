@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Watch Video</title>
+  <style>
+    body {
+      text-align: center;
+      background-color: #f4f4f4;
+      padding: 50px;
+      font-family: Arial, sans-serif;
+    }
+
+    #video-container {
+      display: inline-block;
+    }
+
+    video {
+      width: 80%;
+      max-width: 960px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .controls, .completion {
+      margin-top: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #completion-message {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  
+
+  <div id="video-container">
+    <video id="introVideo" autoplay muted>
+      <source src="{{ url_for('static', filename='video.mp4') }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div id="completion-message" class="completion">
+      <h3>✅ You've finished watching the video!</h3>
+      <button onclick="rewatch()">Rewatch</button>
+      <button onclick="goToForm()">Next</button>
+      
+    </div>
+  </div>
+
+  <script>
+  const video = document.getElementById("introVideo");
+  const completionMsg = document.getElementById("completion-message");
+
+  let lastTime = 0;
+
+  function togglePlay() {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  }
+
+  function toggleMute() {
+    video.muted = !video.muted;
+  }
+
+  function goToForm() {
+    window.location.href = "/flash";
+  }
+
+  function rewatch() {
+    completionMsg.style.display = "none";
+    video.currentTime = 0;
+    lastTime = 0; // reset time tracker
+    video.muted = true; // autoplay works best when muted
+    video.play();
+  }
+
+  // Prevent right-click and seeking
+  video.addEventListener('contextmenu', e => e.preventDefault());
+
+  video.addEventListener('timeupdate', () => {
+    if (Math.abs(video.currentTime - lastTime) > 1) {
+      video.currentTime = lastTime;
+    }
+    lastTime = video.currentTime;
+  });
+
+  video.onended = () => {
+    completionMsg.style.display = "block";
+  };
+</script>
+
+</body>
+</html>
